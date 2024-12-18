@@ -3,9 +3,7 @@ using API_CRUD.Models;
 
 namespace API_CRUD.Services.User;
 
-public interface IUserService
+public interface IUserGetAll
 {
     List<UserDTO> GetAllUsers();
-    void CreateUser(UserModel userModel);
 }
-

@@ -2,6 +2,8 @@ using API_CRUD.DataAcess;
 using API_CRUD.Services;
 using API_CRUD.Services.Company;
 using API_CRUD.Services.User;
+using API_CRUD.Services.User.CreateUserUseCase;
+using API_CRUD.Services.User.UserGetAllUseCase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,7 +16,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserGetAll, UserGetAll>();
+
+builder.Services.AddScoped<ICreateUser, CreateUser>();
+
+builder.Services.AddScoped<IUserGetId, UserGetId>();
 
 builder.Services.AddScoped<ICompanyService, CompanyService>();
 

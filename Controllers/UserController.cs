@@ -1,32 +1,47 @@
 ﻿using API_CRUD.DTO.User;
 using API_CRUD.Models;
 using API_CRUD.Services.User;
+using API_CRUD.Services.User.CreateUserUseCase;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_CRUD.Controllers;
 [Route("api/[controller]")]
 [ApiController]
-
 public class UserController : ControllerBase
 {
-    private readonly IUserService _userService;
-    public UserController(IUserService userService)
+    // Ação para obter um usuário pelo ID
+    [HttpGet("{id}")]
+    public IActionResult GetId(
+        [FromRoute] int id,  // Mudança: agora o ID vem pela URL (via [FromRoute])
+        [FromServices] IUserGetId useCase)
     {
-        _userService = userService;
+        var user = useCase.GetId(id);
+        if (user == null)
+        {
+            return NotFound();  // Caso o usuário não seja encontrado
+        }
+        return Ok(user);
     }
+
+    // Ação para obter todos os usuários
     [HttpGet]
-    public IActionResult GetAll()
+    public IActionResult GetAll(
+        [FromServices] IUserGetAll useCase)
     {
-        var users = _userService.GetAllUsers();
+        var users = useCase.GetAllUsers();
         return Ok(users);
     }
+
+    // Ação para criar um usuário
     [HttpPost]
-    public UserCreateDTO CreateUser([FromBody] UserModel user)
+    public UserCreateDTO CreateUser(
+        [FromBody] UserModel user,
+        [FromServices] ICreateUser useCase)
     {
-        _userService.CreateUser(user);
-        return new UserCreateDTO 
+        useCase.AddUser(user);
+        return new UserCreateDTO
         {
-            Id = user.Id 
+            Id = user.Id
         };
     }
 }
