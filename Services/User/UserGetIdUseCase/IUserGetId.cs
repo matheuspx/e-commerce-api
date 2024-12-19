@@ -1,9 +1,9 @@
 ﻿using API_CRUD.DTO.User;
 
-namespace API_CRUD.Services.User
+namespace API_CRUD.Services.User;
+
+public interface IUserGetId
 {
-    public interface IUserGetId
-    {
-        UserDTO GetId(int id);
-    }
+    UserDTO GetId(int id);
 }
+

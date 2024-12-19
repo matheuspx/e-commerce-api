@@ -1,6 +1,8 @@
 using API_CRUD.DataAcess;
 using API_CRUD.Services;
 using API_CRUD.Services.Company;
+using API_CRUD.Services.Company.CreateCompanyUseCase;
+using API_CRUD.Services.Company.UseCompanyGetId;
 using API_CRUD.Services.User;
 using API_CRUD.Services.User.CreateUserUseCase;
 using API_CRUD.Services.User.UserGetAllUseCase;
@@ -22,7 +24,11 @@ builder.Services.AddScoped<ICreateUser, CreateUser>();
 
 builder.Services.AddScoped<IUserGetId, UserGetId>();
 
-builder.Services.AddScoped<ICompanyService, CompanyService>();
+builder.Services.AddScoped<ICreateCompany, CreateCompany>();
+
+builder.Services.AddScoped<IGetIdCompany, GetIdCompany>();
+
+builder.Services.AddScoped<IGetAllCompany, GetAllCompany>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(

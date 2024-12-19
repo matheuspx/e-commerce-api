@@ -4,11 +4,11 @@ using API_CRUD.Models;
 
 namespace API_CRUD.Services.Company
 {
-    public class CompanyService : ICompanyService
+    public class GetAllCompany : IGetAllCompany
     {
         private readonly AppDbContext _context;
 
-        public CompanyService(AppDbContext context)
+        public GetAllCompany(AppDbContext context)
         {
             _context = context;
         }
@@ -27,10 +27,7 @@ namespace API_CRUD.Services.Company
         }
 
   
-        public void CreateCompany(CompanyModel company)
-        {
-            _context.Companies.Add(company);
-            _context.SaveChanges();
+        
         }
-    }
 }
+

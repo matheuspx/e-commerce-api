@@ -1,36 +1,46 @@
-﻿using API_CRUD.DTOs.Company;
-using API_CRUD.Models;
-using API_CRUD.Services;
+﻿using API_CRUD.Models;
 using API_CRUD.Services.Company;
+using API_CRUD.Services.Company.UseCompanyGetId;
 using Microsoft.AspNetCore.Mvc;
+using API_CRUD.Services.Company.CreateCompanyUseCase;
+using API_CRUD.Services;
 
-namespace API_CRUD.Controllers
+namespace API_CRUD.Controllers;
+[Route("api/[controller]")]
+[ApiController]
+public class CompanyController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CompanyController : ControllerBase
+    // Ação para obter uma empresa pelo ID
+    [HttpGet("{id}")]
+    public IActionResult GetId(
+        [FromRoute] int id,  // O ID vem pela URL (via [FromRoute])
+        [FromServices] IGetIdCompany useCase)  // Serviço para obter a empresa pelo ID
     {
-        private readonly ICompanyService _companyService;
-
-        public CompanyController(ICompanyService companyService)
+        var company = useCase.GetIdCompanYY(id);
+        if (company == null)
         {
-            _companyService = companyService;
+            return NotFound();  // Caso a empresa não seja encontrada
         }
+        return Ok(company);
+    }
 
-        // Endpoint para obter todas as empresas
-        [HttpGet]
-        public ActionResult<List<CompanyDTO>> GetAll()
-        {
-            var companies = _companyService.GetAllCompanies();
-            return Ok(companies);  // Retorna a lista de empresas
-        }
+    // Ação para obter todas as empresas
+    [HttpGet]
+    public IActionResult GetAll(
+        [FromServices] IGetAllCompany useCase)  // Serviço para obter todas as empresas
+    {
+        var companies = useCase.GetAllCompanies();
+        return Ok(companies);
+    }
 
-        // Endpoint para criar uma nova empresa
-        [HttpPost]
-        public ActionResult CreateCompany([FromBody] CompanyModel company)
-        {
-            _companyService.CreateCompany(company);
-            return CreatedAtAction(nameof(GetAll), new { id = company.Id }, company);  // Retorna um código 201 (Created)
-        }
+    // Ação para criar uma empresa
+    [HttpPost]
+    public IActionResult CompanyAdd
+        (
+        [FromBody] CompanyModel company,  // Modelo de dados da empresa a ser criada
+        [FromServices] ICreateCompany useCase)  // Serviço para criar a empresa
+    {
+        var response = useCase.CompanyAdd(company);  // Método que cria a empresa
+        return Created(string.Empty, response);
     }
 }

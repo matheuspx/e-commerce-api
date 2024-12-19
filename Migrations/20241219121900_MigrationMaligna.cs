@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace API_CRUD.Migrations
 {
     /// <inheritdoc />
-    public partial class addCompany : Migration
+    public partial class MigrationMaligna : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
