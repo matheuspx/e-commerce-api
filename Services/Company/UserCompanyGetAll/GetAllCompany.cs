@@ -2,7 +2,7 @@
 using API_CRUD.DTOs.Company;
 using API_CRUD.Models;
 
-namespace API_CRUD.Services.Company
+namespace API_CRUD.Services.Company.UserCompanyGetAll
 {
     public class GetAllCompany : IGetAllCompany
     {
@@ -13,7 +13,7 @@ namespace API_CRUD.Services.Company
             _context = context;
         }
 
-        
+
         public List<CompanyDTO> GetAllCompanies()
         {
             var companies = _context.Companies.ToList();
@@ -26,8 +26,8 @@ namespace API_CRUD.Services.Company
             }).ToList();
         }
 
-  
-        
-        }
+
+
+    }
 }
 

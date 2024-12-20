@@ -1,9 +1,9 @@
 using API_CRUD.DataAcess;
 using API_CRUD.Services;
-using API_CRUD.Services.Company;
 using API_CRUD.Services.Company.CreateCompanyUseCase;
 using API_CRUD.Services.Company.DeleteCompany;
 using API_CRUD.Services.Company.UseCompanyGetId;
+using API_CRUD.Services.Company.UserCompanyGetAll;
 using API_CRUD.Services.User;
 using API_CRUD.Services.User.CreateUserUseCase;
 using API_CRUD.Services.User.DeleteUser;

@@ -1,6 +1,4 @@
 ﻿using API_CRUD.DataAcess;
-using API_CRUD.Models;
-using API_CRUD.Services.Company.CompanyDelete;
 
 namespace API_CRUD.Services.Company.DeleteCompany;
 
