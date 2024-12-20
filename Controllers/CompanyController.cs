@@ -4,12 +4,27 @@ using API_CRUD.Services.Company.UseCompanyGetId;
 using Microsoft.AspNetCore.Mvc;
 using API_CRUD.Services.Company.CreateCompanyUseCase;
 using API_CRUD.Services;
+using API_CRUD.Services.Company.DeleteCompany;
+using API_CRUD.DTOs.Company;
 
 namespace API_CRUD.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 public class CompanyController : ControllerBase
 {
+    [HttpDelete("{id}")]
+    public IActionResult DeleteCompany(
+    [FromBody] CompanyDeleteDTO company, // DTO para receber o ID da empresa
+    [FromServices] ICompanyDelete useCase) // Serviço para deletar a empresa
+    {
+        var result = useCase.DeleteCompany(company.Id); // Chama o caso de uso para deletar
+
+        if (!result)
+            return NotFound("Empresa não encontrada."); // Retorna 404 se não encontrar a empresa
+
+        return NoContent(); // Retorna 204 se a exclusão for bem-sucedida
+    }
+
     // Ação para obter uma empresa pelo ID
     [HttpGet("{id}")]
     public IActionResult GetId(

@@ -2,9 +2,11 @@ using API_CRUD.DataAcess;
 using API_CRUD.Services;
 using API_CRUD.Services.Company;
 using API_CRUD.Services.Company.CreateCompanyUseCase;
+using API_CRUD.Services.Company.DeleteCompany;
 using API_CRUD.Services.Company.UseCompanyGetId;
 using API_CRUD.Services.User;
 using API_CRUD.Services.User.CreateUserUseCase;
+using API_CRUD.Services.User.DeleteUser;
 using API_CRUD.Services.User.UserGetAllUseCase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,10 +15,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 builder.Services.AddScoped<IUserGetAll, UserGetAll>();
 
@@ -29,6 +33,10 @@ builder.Services.AddScoped<ICreateCompany, CreateCompany>();
 builder.Services.AddScoped<IGetIdCompany, GetIdCompany>();
 
 builder.Services.AddScoped<IGetAllCompany, GetAllCompany>();
+
+builder.Services.AddScoped<IUserDelete, UserDelete>();
+
+builder.Services.AddScoped<ICompanyDelete, CompanyDelete>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(

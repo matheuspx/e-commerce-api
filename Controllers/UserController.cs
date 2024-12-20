@@ -2,6 +2,7 @@
 using API_CRUD.Models;
 using API_CRUD.Services.User;
 using API_CRUD.Services.User.CreateUserUseCase;
+using API_CRUD.Services.User.DeleteUser;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_CRUD.Controllers;
@@ -9,6 +10,21 @@ namespace API_CRUD.Controllers;
 [ApiController]
 public class UserController : ControllerBase
 {
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteUser(   
+        [FromBody] UserDeleteDTO user,
+        [FromServices] IUserDelete useCase)
+                                   
+    {
+        var result = useCase.DeleteUser(user.Id);
+
+        if (!result)
+            return NotFound("Usuário não encontrado.");
+
+        return NoContent();
+    }
+
     // Ação para obter um usuário pelo ID
     [HttpGet("{id}")]
     public IActionResult GetId(
@@ -43,5 +59,6 @@ public class UserController : ControllerBase
         {
             Id = user.Id
         };
+
     }
 }
