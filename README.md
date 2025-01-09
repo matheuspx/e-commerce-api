@@ -11,7 +11,6 @@ A E-commerce API com funcionalidades de cadastro e gerenciamento de clientes, pr
 
 ## 🏗️ Arquitetura do Projeto
 
-O sistema foi desenvolvido utilizando Clean Architecture e Domain-Driven Design (DDD) para garantir:
 
 - **Manutenibilidade**: Facilita a adição de novas funcionalidades.
 - **Separação de Responsabilidades**: Cada camada possui funções específicas e bem definidas.
@@ -29,7 +28,6 @@ O sistema foi desenvolvido utilizando Clean Architecture e Domain-Driven Design 
 ### Pré-requisitos
 
 - .NET SDK 6.0+
-- Docker (opcional)
 
 ### Instalação
 
