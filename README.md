@@ -1,5 +1,3 @@
-![image](https://github.com/user-attachments/assets/83adbf6f-93d6-4b5a-ac58-768c06c1022f)# E-commerce Platform
-
 ## 📚 Sobre o Projeto
 
 A E-commerce API com funcionalidades de cadastro e gerenciamento de clientes, produtos e empresas, incluindo ordens de pagamento, o sistema conta com autenticação, controle de acesso, fechamento de pedidos e uma arquitetura MVC, aplicando conceitos de camadas para garantir a manutenibilidade do sistema
