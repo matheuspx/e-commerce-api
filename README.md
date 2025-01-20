@@ -68,10 +68,3 @@ A E-commerce API com funcionalidades de cadastro e gerenciamento de clientes, pr
    O sistema estará disponível em `http://localhost:5027`.
 
    Acesse o Swagger para testar os endpoints: `http://localhost:5027/swagger`.
-
-
-
-
----
-
-Este README fornece uma visão geral do projeto, suas funcionalidades, tecnologias utilizadas, instruções de uso e informações de contato. Você pode personalizar ainda mais conforme necessário.
